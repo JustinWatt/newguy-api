@@ -27,4 +27,6 @@
                                   [cheshire "5.5.0"]
                                   [ring-mock "0.1.5"]]
 
-                   :plugins [[lein-ring "0.9.6"]]}})
+                   :plugins [[lein-ring "0.9.6"]]}}
+
+  :main newguy-api.server)
