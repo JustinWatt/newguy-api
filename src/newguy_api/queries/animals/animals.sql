@@ -1,6 +1,5 @@
 -- name: all-animals
 -- Selects all animals
-
 SELECT id
       , name
       , breed
@@ -26,7 +25,6 @@ WHERE id = :id;
 
 -- name: get-animal-by-name
 -- Selects the (id, name, breed, created_at, updated_at, last_play_time, yard_id, organization_id) for the animal matching the name
-
 SELECT id
     , name
     , breed
@@ -40,7 +38,6 @@ WHERE name = :name;
 
 -- name: insert-animal<!
 -- inserts a single animal
-
 INSERT INTO animals (
      name
    , breed
@@ -53,11 +50,10 @@ VALUES (
 -- name: update-animal<!
 -- update a single animal matching id
 UPDATE animals
-SET   id = :id
-    , name = :name
-    , breed = :breed
-    , updated_at = now()
-
+SET   name           = :name
+    , breed          = :breed
+    , yard           = :yard
+    , updated_at     = now()
 WHERE id = :id;
 
 -- name: delete-animal!
