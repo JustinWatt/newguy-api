@@ -9,5 +9,6 @@
 (defqueries "newguy_api/tables/organizations.sql"          db-connection)
 (defqueries "newguy_api/tables/users/registered_users.sql" db-connection)
 (defqueries "newguy_api/queries/animals/animals.sql"       db-connection)
+(defqueries "newguy_api/queries/yards/yards.sql"           db-connection)
 
 
