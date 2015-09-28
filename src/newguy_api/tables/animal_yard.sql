@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS animal_yard (
       id        serial PRIMARY KEY
     , animal_id integer NOT NULL REFERENCES animals (id) ON DELETE CASCADE
     , yard_id   integer NOT NULL REFERENCES yards   (id) ON DELETE CASCADE
-    , enter_dts timestamp with timezone
+    , entry_dts timestamp with timezone DEFAULT now()
     , exit_dts  timestamp with timezone);
 
 -- name: drop-animal-yard-table!
