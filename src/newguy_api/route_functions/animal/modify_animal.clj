@@ -10,4 +10,10 @@
         new-yard  (if (empty? yard)  (str (:yard current-animal-info)) yard)
         new-animal-info (query/update-animal<! {:id (:id current-animal-info)
                                                 :name new-name
-                                                :breed })]))
+                                                :breed new-breed})]
+    (respond/ok {:id (:id current-animal-info) :name new-name :breed new-breed})))
+
+(defn modify-animal-response [id name breed yard]
+  (let [current-animal-info (first (query/get-animal-by-id {:id id}))]
+    (cond
+      (empty? current-animal-info) (respond/not-found {:error "Animal ID does not exist"}))))
