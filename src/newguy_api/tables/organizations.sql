@@ -3,10 +3,10 @@
 
 CREATE TABLE IF NOT EXISTS organizations (
       id         serial PRIMARY KEY
-    , name       citext UNIQUE NOT NULL
-    , created_at timestamp with time zone NOT NULL DEFAULT now()
-    , updated_at timestamp with time zone NOT NULL DEFAULT now());
+    , name       text UNIQUE NOT NULL
+    , created_at timestamptz NOT NULL DEFAULT now()
+    , updated_at timestamptz NOT NULL DEFAULT now());
 
 -- name: drop-organizations-table!
 -- drop the organizations table
-DROP TABLE organizations;
+DROP TABLE IF EXISTS organizations;
