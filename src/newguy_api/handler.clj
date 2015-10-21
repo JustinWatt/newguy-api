@@ -1,22 +1,15 @@
 (ns newguy-api.handler
   (:require [compojure.api.sweet :refer :all]
             [ring.util.http-response :refer :all]
-            [schema.core :as s]))
-
-(s/defschema Message {:message String})
+            [newguy-api.routes.animal :refer :all]
+            [schema.core :as s]
+            [newguy-api.queries.query-defs :as query]))
 
 (defapi app
   (swagger-ui)
   (swagger-docs
-    {:info {:title "Newguy-api"
-            :description "Compojure Api example"
+    {:info {:title "Newguy-API"
+            :description "API for managing interactions among animals in a shelter environment"
             :version "0.0.1"}
-     :tags [{:name "Animals", :description "Create, Update, Delete User Details"}]})
-
-  (context* "/hello" []
-    :tags ["hello"]
-    (GET* "/" []
-      :return Message
-      :query-params [name :- String]
-      :summary "say hello"
-      (ok {:message (str "Terve, " name)}))))
+     :tags [{:name "Animals", :description "Create, Update, Delete Animal Details"}]})
+  animal-routes)
