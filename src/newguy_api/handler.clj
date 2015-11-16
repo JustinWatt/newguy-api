@@ -6,7 +6,7 @@
             [newguy-api.queries.query-defs :as query]))
 
 (defapi app
-  (swagger-ui)
+  (swagger-ui "/")
   (swagger-docs
     {:info {:title "Newguy-API"
             :description "API for managing interactions among animals in a shelter environment"

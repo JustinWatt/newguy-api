@@ -1,8 +1,28 @@
 (ns newguy-api.server
-  (:require [org.httpkit.server :as httpkit]
-            [newguy-api.handler :refer [app]]
-            [newguy-api.seed-data :refer [drop-db! create-db! seed-data!]]))
+  (:require [newguy-api.handler :refer [app]]
+            [newguy-api.seed-data :refer [drop-db! create-db! seed-data!]]
+            [org.httpkit.server :refer [run-server]]
+            [com.stuartsierra.component :as component]))
 
-(defn -main [port]
-  (httpkit/run-server app {:port (Integer/parseInt port) :join false})
-  (println "server started on port:" port))
+(defn- start-server [handler port]
+  (let [server (run-server handler {:port  port})]
+    (println (str "Started server on localhost: " port))
+    server))
+
+(defn- stop-server [server]
+  (when server
+    (server))) ;; run-server returns a fn that stops itself
+
+(defrecord NewGuyAPI []
+  component/Lifecycle
+  (start [this]
+    (assoc this :server (start-server #'app 7000)))
+  (stop [this]
+    (stop-server (:server this))
+    (dissoc this :server)))
+
+(defn create-system []
+  (NewGuyAPI.))
+
+(defn -main [& args]
+  (.start (create-system)))

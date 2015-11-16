@@ -13,29 +13,32 @@
                  [clj-time "0.11.0"]
                  [com.draines/postal "1.11.4"]
                  [cheshire "5.5.0"]
-                 [http-kit "2.1.19"]]
+                 [http-kit "2.1.19"]
+                 [com.stuartsierra/component "0.3.0"]]
 
   :plugins [[lein-environ "1.0.1"]]
 
   :min-lein-version "2.5.0"
 
-  :ring {:handler newguy-api.handler/app}
+  :ring {:handler newguy-api.handler/app
+         :auto-refresh? true
+         :auto-reload? true}
 
   :uberjar-name "server.jar"
 
-  :profiles { :uberjar {:resource-paths ["swagger-ui"]
+  :profiles {:dev {:source-paths ["dev" "src"]
+                   :dependencies [[javax.servlet/servlet-api "2.5"]
+                                  [cheshire "5.5.0"]
+                                  [ring-mock "0.1.5"]
+                                  [reloaded.repl "0.2.1"]]}
+
+             :uberjar {:resource-paths ["swagger-ui"]
                         :aot :all}
 
-             :test-local {:dependencies [[javax.servlet/servlet-api "2.5"]
-                                         [cheshire "5.5.0"]
-                                         [ring-mock "0.1.5"]]
-                          :plugins [[lein-ring "0.9.6"]]}
+             :test-local {:plugins [[lein-ring "0.9.6"]]}
 
              :test-env-vars {}
-             :dev-env-vars  {}
 
-             :test [:test-env-vars :test-local]
-             :dev  [:dev-env-vars  :test-local]
-             }
+             :test [:test-env-vars :test-local]}
 
   :main newguy-api.server)
