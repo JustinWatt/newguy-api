@@ -2,12 +2,12 @@
   (:require [newguy-api.queries.query-defs :as query]
             [ring.util.http-response :as respond]))
 
-
 (defn animal-serializer [animal]
   (select-keys animal [:id :name :breed :yard_id :organization_id]))
 
-(defn get-animals [animal_id organization_id yard_id]
-  (let [has_organization_id (not (nil? organization_id))
+(defn get-animals [params]
+  (let [{:keys [animal_id organization_id yard_id]} params
+        has_organization_id (not (nil? organization_id))
         has_yard_id         (not (nil? yard_id))
         has_animal_id       (not (nil? animal_id))
         animals (query/all-animals {:organization_id organization_id
@@ -16,4 +16,5 @@
                                     :has_organization_id has_organization_id
                                     :has_yard_id     has_yard_id
                                     :has_animal_id   has_animal_id})]
-    (respond/ok (map animal-serializer animals))))
+    (if (empty? animals) (respond/not-found "Animal not found")
+        (respond/ok (map animal-serializer animals)))))

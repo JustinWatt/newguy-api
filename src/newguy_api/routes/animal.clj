@@ -26,7 +26,7 @@
                    :yard_id (s/maybe Long)
                    :organization_id Long}]
           :summary "Returns all animals in the system"
-          (get-animals nil nil nil))
+          (get-animals {}))
 
     (GET* "/animal/:id" {:as request}
           :tags ["Animal"]
@@ -36,8 +36,8 @@
                     :breed String
                     :yard_id (s/maybe Long)
                     :organization_id Long}]
-          :summary "Returns all animals in the system"
-          (get-animals id nil nil))
+          :summary "Returns animal matching given id"
+          (get-animals {:animal_id id} ))
 
     (GET* "/organization/:organization_id/animals" {:as request}
           :tags ["Animal"]
@@ -48,9 +48,7 @@
                     :yard_id (s/maybe Long)
                     :organization_id Long}]
           :summary "Returns all animals for the given organization id"
-          (get-animals nil organization_id nil))
-
-    ))
+          (get-animals {:organization_id organization_id}))))
 
 
 
