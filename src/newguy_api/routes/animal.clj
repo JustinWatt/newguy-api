@@ -18,6 +18,14 @@
             :summary     "Create a new animal with provided name, breed and organization"
             (create-animal-response animal_name breed organization_id))
 
+    (PATCH*  "/animal/:id"  {:as request}
+             :tags          ["Animal"]
+             :path-params   [id :- Long]
+             :body-params   [{name :- String ""} {breed :- String ""} {yard_id :- (s/maybe Long) nil}]
+             :return        {:id Long :name String :breed String :yard_id (s/maybe Long)}
+             :summary       "Update some or all fields of a specified animal."
+             (modify-animal-response {:animal_id id :name name :breed breed :yard_id yard_id}))
+
     (GET* "/animals" {:as request}
           :tags ["Animal"]
           :return [{:id Long

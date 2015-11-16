@@ -13,19 +13,18 @@ SELECT  animals.id
 
 FROM animals
 WHERE (:has_organization_id IS FALSE OR :organization_id = animals.organization_id)
-      AND (:has_yard_id IS FALSE OR :yard_id = animals.yard_id)
+      AND (:has_yard_id   IS FALSE OR :yard_id_id = animals.yard_id)
       AND (:has_animal_id IS FALSE OR :animal_id = animals.id);
 
 -- name: get-animal-by-id
 -- Selects the (id, name, breed, created_at, updated_at, yard_id, organization_id) for the animal matching the id
-SELECT
-      animals.id
-    , animals.name
-    , animals.breed
-    , animals.created_at
-    , animals.updated_at
-    , animals.yard_id
-    , animals.organization_id
+SELECT animals.id
+     , animals.name
+     , animals.breed
+     , animals.created_at
+     , animals.updated_at
+     , animals.yard_id
+     , animals.organization_id
 FROM animals
 WHERE animals.id = :id;
 
@@ -56,11 +55,11 @@ VALUES (
 -- name: update-animal<!
 -- update a single animal matching id
 UPDATE animals
-SET , animals.name           = :name
-    , animals.breed          = :breed
-    , animals.yard           = :yard
-    , animals.updated_at     = now()
-WHERE animals.id = :id;
+SET   "name"       = :name
+    , "breed"      = :breed
+    , "yard_id"    = :yard_id
+    , "updated_at" = now()
+WHERE id = :id;
 
 -- name: delete-animal!
 -- delete a single animal matching id
