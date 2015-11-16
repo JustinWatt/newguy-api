@@ -26,11 +26,12 @@
 
   :uberjar-name "server.jar"
 
-  :profiles {:dev {:source-paths ["dev" "src"]
+  :profiles {:dev [:dev-env-vars
+                   {:source-paths ["dev" "src"]
                    :dependencies [[javax.servlet/servlet-api "2.5"]
                                   [cheshire "5.5.0"]
                                   [ring-mock "0.1.5"]
-                                  [reloaded.repl "0.2.1"]]}
+                                  [reloaded.repl "0.2.1"]]}]
 
              :uberjar {:resource-paths ["swagger-ui"]
                         :aot :all}
