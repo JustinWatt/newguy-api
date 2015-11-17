@@ -38,8 +38,8 @@ VALUES (
 -- name: update-organization<!
 -- update a single organization matching id
 UPDATE organizations
-SET   organizations.name           = :name
-    , organizations.updated_at     = now()
+SET   "name"       = :name
+    , "updated_at" = now()
 WHERE organizations.id = :id;
 
 -- name: delete-organization!
