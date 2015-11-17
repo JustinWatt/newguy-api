@@ -2,6 +2,8 @@
   (:require [compojure.api.sweet :refer :all]
             [ring.util.http-response :refer :all]
             [newguy-api.routes.animal :refer :all]
+            [newguy-api.routes.yard :refer :all]
+            [newguy-api.routes.organization :refer :all]
             [schema.core :as s]
             [newguy-api.queries.query-defs :as query]))
 
@@ -12,4 +14,5 @@
             :description "API for managing interactions among animals in a shelter environment"
             :version "0.0.1"}
      :tags [{:name "Animals", :description "Create, Update, Delete Animal Details"}]})
-  animal-routes)
+  animal-routes
+  organization-routes)

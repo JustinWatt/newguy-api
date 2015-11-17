@@ -1,4 +1,4 @@
-(ns newguy-api.route-functions.organization.delete-organizations
+(ns newguy-api.route-functions.organization.delete-organization
   (:require [newguy-api.queries.query-defs :as query]
             [ring.util.http-response :as respond]))
 
