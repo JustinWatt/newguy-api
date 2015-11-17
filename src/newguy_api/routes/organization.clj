@@ -11,6 +11,19 @@
 
 (defroutes* organization-routes
   (context* "/api" []
+            (GET* "/organizations" {:as request}
+                  :tags ["Organization"]
+                  :return [{:id Long
+                            :name String}]
+                  :summary "Returns all Organizations in the system"
+                  (get-organizations {}))
+            (GET* "/organizations/:id" {:as request}
+                  :tags ["Organization"]
+                  :path-params [id :- Long]
+                  :return [{:id Long
+                            :name String}]
+                  :summary "Returns all Organization matching given id"
+                  (get-organizations {:organization_id id}))
             (POST* "/organization" {:as request}
                    :tags        ["Organization"]
                    :return      {:organization_name String
