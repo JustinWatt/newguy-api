@@ -18,7 +18,7 @@
                             :name String}]
                   :summary "Returns all Organizations in the system"
                   (get-organizations {}))
-            (GET* "/organizations/:id" {:as request}
+            (GET* "/organization/:id" {:as request}
                   :tags ["Organization"]
                   :path-params [id :- Long]
                   :return [{:id Long

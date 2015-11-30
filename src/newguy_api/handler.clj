@@ -15,4 +15,5 @@
             :version "0.0.1"}
      :tags [{:name "Animals", :description "Create, Update, Delete Animal Details"}]})
   animal-routes
-  organization-routes)
+  organization-routes
+  yard-routes)

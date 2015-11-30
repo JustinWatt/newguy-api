@@ -2,7 +2,6 @@
   (:require [newguy-api.queries.query-defs :as query]
             [ring.util.http-response :as respond]))
 
-
 (defn create-new-yard [yard-name organization-id]
   (let [new-yard (query/insert-yard<! {:name yard-name
                                        :organization_id organization-id})]
@@ -14,4 +13,3 @@
     (cond
       name-exists? (respond/conflict {:error "Name already exists"})
       :else        (create-new-yard yard-name organization-id))))
-

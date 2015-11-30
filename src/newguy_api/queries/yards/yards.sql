@@ -5,7 +5,9 @@ SELECT  yards.id
       , yards.created_at
       , yards.updated_at
       , yards.organization_id
-FROM yards;
+FROM yards
+WHERE (:has_organization_id IS FALSE OR :organization_id = yards.organization_id)
+      AND (:has_yard_id IS FALSE OR :yard_id = yards.id);
 
 -- name: get-yard-by-id
 -- Selects the (id, name, created_at, updated_at, organization_id) for the yard matching the id
