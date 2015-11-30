@@ -1,3 +1,28 @@
+-- name: insert-animal-yard<!
+-- inserts a single animal
+INSERT INTO animal_yard (  animal_id
+                         , yard_id)
+VALUES (  :animal_id
+        , :yard_id);
+
+-- name: update-exit-time!
+-- update the play time
+UPDATE animal_yard
+SET
+    "exit_dts" = now()
+WHERE id = :id;
+
+-- name: animals-last-play-time
+SELECT animal_yard.id
+      ,animal_yard.animal_id
+      ,animal_yard.yard_id
+      ,animal_yard.entry_dts
+      ,animal_yard.exit_dts
+
+FROM animal_yard
+WHERE :animal_id = animal_yard.animal_id
+ORDER BY entry_dts DESC;
+
 -- name: all-animals
 -- Selects all animals with optional filters for organization_id and yard_id
 SELECT  animals.id

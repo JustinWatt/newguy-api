@@ -18,6 +18,14 @@
            :summary     "Create a yard with given name for specified organization"
            (create-yard-response yard_name organization_id))
 
+    (PATCH*  "/yard/:id"  {:as request}
+             :tags          ["Yard"]
+             :path-params   [id :- Long]
+             :body-params   [{name :- String ""}]
+             :return        {:id Long :name String}
+             :summary       "Update some or all fields of a specified yard."
+             (modify-yard-response {:name name :id id}))
+
     (GET* "/yards" {:as request}
           :tags ["Yard"]
           :return [{:id Long

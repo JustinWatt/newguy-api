@@ -3,15 +3,15 @@
 
 CREATE TABLE IF NOT EXISTS registered_users (
       id         serial PRIMARY KEY
-    , username   citext NOT NULL UNIQUE
-    , email      citext NOT NULL UNIQUE
-    , password   text   NOT NULL
+    , username   text NOT NULL UNIQUE
+    , email      text NOT NULL UNIQUE
+    , password   text NOT NULL
     , first_name text
     , last_name  text
     , location   text
-    , created_at timestamp with time zone NOT NULL DEFAULT now()
-    , updated_at timestamp with time zone NOT NULL DEFAULT now());
+    , created_at timestamptz NOT NULL DEFAULT now()
+    , updated_at timestamptz NOT NULL DEFAULT now());
 
 -- name: drop-registered-users-table!
 -- drop the registered-users table
-DROP TABLE registered_users;
+DROP TABLE IF EXISTS registered_users;

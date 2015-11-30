@@ -43,9 +43,8 @@ VALUES (
 -- name: update-yard<!
 -- update a single yard matching id
 UPDATE yards
-SET   yards.name           = :name
-    , yards.yard           = :yard
-    , yards.updated_at     = now()
+SET  "name"           = :name
+    ,"updated_at"     = now()
 WHERE yards.id = :id;
 
 -- name: delete-yard!
