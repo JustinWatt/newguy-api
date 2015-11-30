@@ -14,5 +14,3 @@
     (cond
       name-exists? (respond/conflict {:error "Name already exists"})
       :else        (create-new-animal animal-name breed organization-id))))
-
-

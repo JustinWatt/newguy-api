@@ -15,8 +15,6 @@
                  :breed new-breed
                  :yard_id yard_id})))
 
-
-
 (defn- yard-nil-or-missing?
   [yard_id]
   (if (nil? yard_id)

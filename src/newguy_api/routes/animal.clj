@@ -56,7 +56,15 @@
                     :yard_id (s/maybe Long)
                     :organization_id Long}]
           :summary "Returns all animals for the given organization id"
-          (get-animals {:organization_id organization_id}))))
+          (get-animals {:organization_id organization_id}))
 
-
-
+    (GET* "/yard/:yard_id/animals" {:as request}
+          :tags ["Animal"]
+          :path-params [yard_id :- Long]
+          :return [{:id Long
+                    :name String
+                    :breed String
+                    :yard_id (s/maybe Long)
+                    :organization_id Long}]
+          :summary "Returns all animals for the given yard id"
+          (get-animals {:yard_id yard_id}))))

@@ -13,7 +13,7 @@ SELECT  animals.id
 
 FROM animals
 WHERE (:has_organization_id IS FALSE OR :organization_id = animals.organization_id)
-      AND (:has_yard_id   IS FALSE OR :yard_id_id = animals.yard_id)
+      AND (:has_yard_id   IS FALSE OR :yard_id = animals.yard_id)
       AND (:has_animal_id IS FALSE OR :animal_id = animals.id);
 
 -- name: get-animal-by-id
