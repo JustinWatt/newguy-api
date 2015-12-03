@@ -18,4 +18,3 @@
                                     :has_animal_id   has_animal_id})]
     (if (empty? animals) (respond/not-found "Animal not found")
         (respond/ok (map animal-serializer animals)))))
-

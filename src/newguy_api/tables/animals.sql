@@ -1,6 +1,5 @@
 -- name: create-animals-table-if-not-exists!
 -- create the animals table if it does not exist
-
 CREATE TABLE IF NOT EXISTS animals (
       id              serial PRIMARY KEY
     , name            text NOT NULL
